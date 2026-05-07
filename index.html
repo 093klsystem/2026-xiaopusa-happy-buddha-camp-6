@@ -1353,7 +1353,8 @@
         </div>
       </div>
       <div class="deadline-chip" id="deadlineChip"><!-- filled by JS --></div>
-      <div class="deadline-chip" id="seatsChip">查询名额中…</div>
+      <div class="deadline-chip" id="seatsChip" style="background:#F0FDF4;color:#15803D;border-color:#BBF7D0;">查询中…
+      </div>
     </div>
   </header>
 
@@ -2008,14 +2009,23 @@
         const data = await resp.json();
         const chip = document.getElementById('seatsChip');
         const remaining = data.max - data.registered;
+
         if (data.full) {
           document.getElementById('fullOverlay').classList.add('show');
-          chip.textContent = '名额已满';
+          chip.textContent = '名额已满 · 感谢支持';
           chip.style.background = '#FEF2F2';
           chip.style.color = '#DC2626';
           chip.style.borderColor = '#FECACA';
+        } else if (remaining <= 10) {
+          chip.innerHTML = `名额紧张 · 仅剩 <strong>${remaining}</strong> 位`;
+          chip.style.background = '#FFF7ED';
+          chip.style.color = '#C2410C';
+          chip.style.borderColor = '#FED7AA';
         } else {
-          chip.textContent = `剩余名额：${remaining} / ${data.max}`;
+          chip.innerHTML = `名额充足 · 剩余 ${remaining} 位`;
+          chip.style.background = '#F0FDF4';
+          chip.style.color = '#15803D';
+          chip.style.borderColor = '#BBF7D0';
         }
       } catch (err) {
         document.getElementById('seatsChip').textContent = '名额查询失败';
