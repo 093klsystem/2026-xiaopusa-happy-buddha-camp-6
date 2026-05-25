@@ -2280,8 +2280,6 @@
       const dob = new Date(dobStr);
       const campDate = CONFIG.ageReferenceDate;
       let age = campDate.getFullYear() - dob.getFullYear();
-      const mo = campDate.getMonth() - dob.getMonth();
-      if (mo < 0 || (mo === 0 && campDate.getDate() < dob.getDate())) age--;
 
       document.getElementById('age_hidden').value = age;
       wrap.style.display = 'block';
