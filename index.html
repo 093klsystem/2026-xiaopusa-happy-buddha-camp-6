@@ -2091,7 +2091,7 @@
         validateChineseName(inputEl, errEl);
       });
       inputEl.addEventListener('input', () => {
-        if (composingState[inputEl.id]) return;
+        if (composingState[inputEl.id] || e.isComposing) return;  // ← 加上 e.isComposing
         const cleaned = stripNonChinese(inputEl.value);
         if (inputEl.value !== cleaned) inputEl.value = cleaned;
         validateChineseName(inputEl, errEl);
