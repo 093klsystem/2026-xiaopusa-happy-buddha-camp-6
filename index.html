@@ -1884,7 +1884,7 @@
       feeNote: '含午餐 & 茶点',
 
       // ── Age eligibility ──────────────────────────────────────────
-      ageMin: 7,
+      ageMin: 8,
       ageMax: 12,
       // Age is calculated against the registration deadline date
       ageReferenceDate: new Date('2026-08-18'),
@@ -2283,7 +2283,7 @@
 
       document.getElementById('age_hidden').value = age;
       wrap.style.display = 'block';
-      const ok = age >= 7 && age <= CONFIG.ageMax;
+      const ok = age >= 8 && age <= CONFIG.ageMax;
       wrap.innerHTML = `<div class="age-badge ${ok ? 'ok' : 'bad'}">${ok ? '✓' : '✗'} 营时年龄：${age} 岁 ${ok ? '（符合资格）' : `（不符合 ${CONFIG.ageMin}–${CONFIG.ageMax} 岁要求）`}</div>`;
 
       if (!ok) {
@@ -2531,7 +2531,7 @@
         if (!dobVal) { showErr('dob', '请选择出生日期。'); ok = false; }
         else {
           const age = parseInt(v('age_hidden'));
-          if (isNaN(age) || age < 7 || age > CONFIG.ageMax) {
+          if (isNaN(age) || age < 8 || age > CONFIG.ageMax) {
             showErr('dob', `年龄不符合报名资格（${CONFIG.ageMin}–${CONFIG.ageMax} 岁）。`); ok = false;
           } else clearErr('dob');
         }
